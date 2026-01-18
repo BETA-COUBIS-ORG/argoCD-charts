@@ -15,15 +15,15 @@ spec:
   # - Source 1: Helm chart from helm-chats repo
   # - Source 2: This GitOps repo, referenced as $values for valueFiles
   sources:
-    - repoURL: https://github.com/BETA-COUBIS-ORG/helm-chats.git
+    - repoURL: git@github.com:BETA-COUBIS-ORG/helm-chats.git
       targetRevision: main
-      path: CHART_PATH_IN_HELM_REPO
+      path: charts/connect-backend
       helm:
         releaseName: connect-backend
         valueFiles:
           - $values/argocd/apps/connect-backend/environments/dev/values.yaml
 
-    - repoURL: https://github.com/BETA-COUBIS-ORG/argoCD-charts.git
+    - repoURL: git@github.com:BETA-COUBIS-ORG/argoCD-charts.git
       targetRevision: main
       ref: values
 

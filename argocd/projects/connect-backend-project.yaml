@@ -7,8 +7,8 @@ spec:
   description: Connect Backend project (Helm chart in helm-chats + values/apps in GitOps repo)
 
   sourceRepos:
-    - https://github.com/BETA-COUBIS-ORG/helm-chats.git
-    - https://github.com/BETA-COUBIS-ORG/argoCD-charts.git
+    - git@github.com:BETA-COUBIS-ORG/helm-chats.git
+    - git@github.com:BETA-COUBIS-ORG/argoCD-charts.git
 
   destinations:
     - server: https://kubernetes.default.svc
