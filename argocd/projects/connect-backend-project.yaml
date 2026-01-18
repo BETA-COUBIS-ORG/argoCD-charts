@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: connect-backend
+  namespace: argocd
+spec:
+  description: Connect Backend project (Helm chart in helm-chats + values/apps in GitOps repo)
+
+  sourceRepos:
+    - https://github.com/BETA-COUBIS-ORG/helm-chats.git
+    - https://github.com/BETA-COUBIS-ORG/argoCD-charts.git
+
+  destinations:
+    - server: https://kubernetes.default.svc
+      namespace: connect-backend-dev
+    - server: https://kubernetes.default.svc
+      namespace: connect-backend-staging
+    - server: https://kubernetes.default.svc
+      namespace: connect-backend-prod
+
+  clusterResourceWhitelist:
+    - group: ""
+      kind: Namespace
+
+  namespaceResourceWhitelist:
+    - group: "*"
+      kind: "*"

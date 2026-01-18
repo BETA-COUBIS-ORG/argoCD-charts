@@ -1,0 +1,8 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ../projects/connect-backend-project.yaml
+  - ../apps/connect-backend/environments/dev
+  - ../apps/connect-backend/environments/staging
+  - ../apps/connect-backend/environments/prod

@@ -1,0 +1,22 @@
+replicaCount: 3
+
+image:
+  repository: your-docker-org/connect-backend
+  tag: "prod"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 8080
+
+ingress:
+  enabled: true
+  className: nginx
+  hosts:
+    - host: connect-backend.example.com
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+
+resources: {}

@@ -1,0 +1,17 @@
+# NOTE: keys must match your Helm chart's values schema.
+# Adjust to your chart.
+replicaCount: 1
+
+image:
+  repository: your-docker-org/connect-backend
+  tag: "dev"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 8080
+
+ingress:
+  enabled: false
+
+resources: {}

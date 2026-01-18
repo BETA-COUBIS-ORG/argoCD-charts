@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: connect-backend-dev
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: connect-backend
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: connect-backend-dev
+
+  # Multiple sources:
+  # - Source 1: Helm chart from helm-chats repo
+  # - Source 2: This GitOps repo, referenced as $values for valueFiles
+  sources:
+    - repoURL: https://github.com/BETA-COUBIS-ORG/helm-chats.git
+      targetRevision: main
+      path: CHART_PATH_IN_HELM_REPO
+      helm:
+        releaseName: connect-backend
+        valueFiles:
+          - $values/argocd/apps/connect-backend/environments/dev/values.yaml
+
+    - repoURL: https://github.com/BETA-COUBIS-ORG/argoCD-charts.git
+      targetRevision: main
+      ref: values
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
